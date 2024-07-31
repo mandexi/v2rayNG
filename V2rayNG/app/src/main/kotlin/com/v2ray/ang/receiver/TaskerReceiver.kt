@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.text.TextUtils
+import android.util.Log
 import com.tencent.mmkv.MMKV
 import com.v2ray.ang.AppConfig
 import com.v2ray.ang.service.V2RayServiceManager
@@ -17,9 +18,10 @@ class TaskerReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
 
         try {
-            val bundle = intent?.getBundleExtra(AppConfig.TASKER_EXTRA_BUNDLE)
-            val switch = bundle?.getBoolean(AppConfig.TASKER_EXTRA_BUNDLE_SWITCH, false)
-            val guid = bundle?.getString(AppConfig.TASKER_EXTRA_BUNDLE_GUID, "")
+            //val bundle = intent?.getBundleExtra(AppConfig.TASKER_EXTRA_BUNDLE)
+            val switch = intent?.getBooleanExtra(AppConfig.TASKER_EXTRA_BUNDLE_SWITCH, false)
+            val guid = intent?.getStringExtra(AppConfig.TASKER_EXTRA_BUNDLE_GUID)
+            Log.e("mytest", "onReceive: $guid")
 
             if (switch == null || guid == null || TextUtils.isEmpty(guid)) {
                 return
