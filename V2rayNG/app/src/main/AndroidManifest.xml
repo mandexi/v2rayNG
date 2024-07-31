@@ -211,6 +211,7 @@
                 android:process=":RunSoLibV2RayDaemon">
             <intent-filter>
                 <action android:name="com.twofortyfouram.locale.intent.action.FIRE_SETTING" />
+                <action android:name="com.twofortyfouram.locale.intent.action.RESET_CONFIG" />
             </intent-filter>
         </receiver>
         <!-- =====================Tasker===================== -->

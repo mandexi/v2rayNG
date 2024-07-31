@@ -77,10 +77,14 @@ object AppConfig {
     const val BROADCAST_ACTION_ACTIVITY = "com.v2ray.ang.action.activity"
     const val BROADCAST_ACTION_WIDGET_CLICK = "com.v2ray.ang.action.widget.click"
 
+    const val BROADCAST_ACTION_SWITCH_VPN="com.twofortyfouram.locale.intent.action.FIRE_SETTING"
+    const val BROADCAST_ACTION_RESET_VPN_CONFIG="com.twofortyfouram.locale.intent.action.RESET_CONFIG"
+
     const val TASKER_EXTRA_BUNDLE = "com.twofortyfouram.locale.intent.extra.BUNDLE"
     const val TASKER_EXTRA_STRING_BLURB = "com.twofortyfouram.locale.intent.extra.BLURB"
     const val TASKER_EXTRA_BUNDLE_SWITCH = "tasker_extra_bundle_switch"
     const val TASKER_EXTRA_BUNDLE_GUID = "tasker_extra_bundle_guid"
+    const val TASKER_EXTRA_BUNDLE_CONFIGSTR = "tasker_extra_bundle_configstr"
     const val TASKER_DEFAULT_GUID = "Default"
 
     const val TAG_PROXY = "proxy"

@@ -219,6 +219,7 @@ object AngConfigManager {
             } else if (str.startsWith(EConfigType.SHADOWSOCKS.protocolScheme)) {
                 ShadowsocksFmt.parseShadowsocks(str)
             } else if (str.startsWith(EConfigType.SOCKS.protocolScheme)) {
+                Log.e("parsesocket:",str)
                 SocksFmt.parseSocks(str)
             } else if (str.startsWith(EConfigType.TROJAN.protocolScheme)) {
                 TrojanFmt.parseTrojan(str)
@@ -388,6 +389,7 @@ object AngConfigManager {
 
     fun importBatchConfig(server: String?, subid: String, append: Boolean): Int {
         var count = parseBatchConfig(Utils.decode(server), subid, append)
+        Log.e("impotcount", count.toString())
         if (count <= 0) {
             count = parseBatchConfig(server, subid, append)
         }

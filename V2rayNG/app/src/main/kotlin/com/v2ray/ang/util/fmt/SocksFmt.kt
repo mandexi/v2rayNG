@@ -1,5 +1,6 @@
 package com.v2ray.ang.util.fmt
 
+import android.util.Log
 import com.v2ray.ang.dto.EConfigType
 import com.v2ray.ang.dto.ServerConfig
 import com.v2ray.ang.dto.V2rayConfig
@@ -32,11 +33,11 @@ object SocksFmt {
         } else {
             result = Utils.decode(result)
         }
-
+        Log.e("result::::",result)
         val legacyPattern = "^(.*):(.*)@(.+?):(\\d+?)$".toRegex()
         val match =
             legacyPattern.matchEntire(result) ?: return null
-
+        Log.e("matchresul","matcheddddddddd")
         config.outboundBean?.settings?.servers?.get(0)?.let { server ->
             server.address = match.groupValues[3].removeSurrounding("[", "]")
             server.port = match.groupValues[4].toInt()
