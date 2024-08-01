@@ -7,6 +7,7 @@ import com.v2ray.ang.dto.ServerAffiliationInfo
 import com.v2ray.ang.dto.ServerConfig
 import com.v2ray.ang.dto.SubscriptionItem
 import java.net.URI
+import kotlin.random.Random
 
 object MmkvManager {
     const val ID_MAIN = "MAIN"
@@ -33,7 +34,21 @@ object MmkvManager {
             Gson().fromJson(json, Array<String>::class.java).toMutableList()
         }
     }
+    fun getServerListStr(): String {
+        val json = mainStorage?.decodeString(KEY_ANG_CONFIGS)
 
+        return json ?: ""
+    }
+    fun setRandomVPN(){
+        val serverList = decodeServerList()
+        if(serverList.size==0){
+            return
+        }
+        val randomIndex = Random.nextInt(serverList.size);
+        mainStorage?.encode(KEY_SELECTED_SERVER,serverList[randomIndex])
+
+
+    }
     fun decodeServerConfig(guid: String): ServerConfig? {
         if (guid.isBlank()) {
             return null

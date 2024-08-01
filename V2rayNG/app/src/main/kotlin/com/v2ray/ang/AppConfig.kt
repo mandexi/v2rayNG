@@ -79,6 +79,7 @@ object AppConfig {
 
     const val BROADCAST_ACTION_SWITCH_VPN="com.twofortyfouram.locale.intent.action.FIRE_SETTING"
     const val BROADCAST_ACTION_RESET_VPN_CONFIG="com.twofortyfouram.locale.intent.action.RESET_CONFIG"
+    const val BROADCAST_ACTION_SET_RANDOM_VPN="com.twofortyfouram.locale.intent.action.SET_RANDOM_VPN"
 
     const val TASKER_EXTRA_BUNDLE = "com.twofortyfouram.locale.intent.extra.BUNDLE"
     const val TASKER_EXTRA_STRING_BLURB = "com.twofortyfouram.locale.intent.extra.BLURB"

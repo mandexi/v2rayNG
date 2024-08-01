@@ -12,6 +12,9 @@ import com.v2ray.ang.util.AngConfigManager
 import com.v2ray.ang.util.MmkvManager
 
 import com.v2ray.ang.util.Utils
+import rx.Observable
+import rx.android.schedulers.AndroidSchedulers
+import java.util.concurrent.TimeUnit
 
 class TaskerReceiver : BroadcastReceiver() {
     private val mainStorage by lazy { MMKV.mmkvWithID(MmkvManager.ID_MAIN, MMKV.MULTI_PROCESS_MODE) }
@@ -42,11 +45,24 @@ class TaskerReceiver : BroadcastReceiver() {
             e.printStackTrace()
         }
         }else if(intent?.action==AppConfig.BROADCAST_ACTION_RESET_VPN_CONFIG){
-            Log.e("retsetcofig","rest")
+
             val configstr = intent?.getStringExtra(AppConfig.TASKER_EXTRA_BUNDLE_CONFIGSTR)
             if(!TextUtils.isEmpty(configstr)){
                 val count = AngConfigManager.importBatchConfig(configstr, "mysub", false)
             }
+        }else if(intent?.action==AppConfig.BROADCAST_ACTION_SET_RANDOM_VPN){
+            if (V2RayServiceManager.v2rayPoint.isRunning) {
+                Utils.stopVService(context)
+            }
+            MmkvManager.setRandomVPN()
+            Observable.timer(500, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    V2RayServiceManager.startV2Ray(context)
+
+                }
+            //mainStorage?.encode(MmkvManager.KEY_SELECTED_SERVER, guid)
+
         }
     }
 }
