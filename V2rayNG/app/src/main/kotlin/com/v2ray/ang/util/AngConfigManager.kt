@@ -387,7 +387,7 @@ object AngConfigManager {
 //        }
 //    }
 
-    fun importBatchConfig(server: String?, subid: String, append: Boolean): Int {
+    fun importBatchConfig(server: String?, subid: String, append: Boolean): Pair<Int, Int>   {
         var count = parseBatchConfig(Utils.decode(server), subid, append)
         Log.e("impotcount", count.toString())
         if (count <= 0) {
@@ -405,7 +405,7 @@ object AngConfigManager {
             updateConfigViaSubAll()
         }
 
-        return count + countSub
+        return count to countSub
     }
 
     fun parseBatchSubscription(servers: String?): Int {
